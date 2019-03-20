@@ -1,0 +1,25 @@
+.full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.dont-scroll {
+  overflow: hidden;
+}
+
+header {
+  height: 5rem;
+  display: flex;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #cefaff;
+}
+
+.logo {
+  width: 35%;
+}
+
+.menu {
+  
+}
+
