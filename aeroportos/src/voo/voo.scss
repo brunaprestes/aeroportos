@@ -1,0 +1,87 @@
+.voo-component {
+  h1 {
+    color: #79bec5;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+
+    form {
+      padding-bottom: 1rem;
+      box-shadow: -3px 4px 1px -4px #999;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    label {
+      font-size: 0.8rem;
+    }
+
+    .icon {
+      font-size: 1.1rem;
+    }
+
+    input,
+    select {
+      height: 2rem;
+      font-size: 0.7rem;
+      padding: 0.1rem;
+    }
+
+    span {
+      padding: 0 0.8rem;
+      background-color: antiquewhite;
+
+      &.-purple {
+        color: #939dce;
+      }
+
+      &.-blue {
+        color: #79bec5;
+      }
+
+      &.-pink {
+        color: #ff879b;
+      }
+
+      &.-green {
+        color: #60c786;
+      }
+    }
+
+    .input-group {
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .datepicker {
+      font-size: 0.8rem;
+      padding: 0;
+
+      input {
+        width: 7.5rem;
+        font-size: 0.7rem;
+        height: 2rem;
+      }
+
+      span {
+        height: 2rem;
+      }
+    }
+
+    .datepicker>span:hover {
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      padding: 0rem 0.7rem;
+      background-color: #79bec5;
+      color: #fff;
+      text-align: center;
+    }
+  }
+}
