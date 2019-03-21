@@ -12,7 +12,7 @@ class App extends Component {
         <div className="content">
           <main>
             <div class="voo-component">
-              <h1>Voôs disposníveis</h1>
+              <h1>Voôs disponíveis</h1>
               <div class="filters">
                 <form>
                   <label>
