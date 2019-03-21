@@ -16,45 +16,51 @@ class App extends Component {
               <div class="filters">
                 <form>
                   <label>
+                    Partida:
+                    <div class="input-group" >
+                      <select class="form-control" >
+                        <option value="grapefruit">Aeroporto Internacional Juscelino Kubitschek</option>
+                        <option value="lime">Lime</option>
+                        <option value="coconut">Coconut</option>
+                        <option value="mango">Mango</option>
+                      </select>
+                      <span class="input-group-addon -blue"><i class="icon icon-land"></i></span>
+                    </div>
+                  </label>
+                  <label>
+                    Destino:
+                    <div class="input-group" >
+                      <select class="form-control" >
+                        <option value="grapefruit">Aeroporto Internacional Juscelino Kubitschek</option>
+                        <option value="lime">Lime</option>
+                        <option value="coconut">Coconut</option>
+                        <option value="mango">Mango</option>
+                      </select>
+                      <span class="input-group-addon -purple"><i class="icon icon-land"></i></span>
+                    </div>
+                  </label>
+                  <label>
                     Data de saída:
-                    <input type="date" name="name" />
+                    <div class="input-group date datepicker" data-date-format="mm-dd-yyyy">
+                      <input class="form-control" type="date" readonly />
+                      <span class="input-group-addon -purple"><i class="icon icon-date"></i></span>
+                    </div>
                   </label>
-
-                  <label>
-                    Aeroporto saída:
-                    <select>
-                      <option value="grapefruit">Grapefruit</option>
-                      <option value="lime">Lime</option>
-                      <option value="coconut">Coconut</option>
-                      <option value="mango">Mango</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Aeroporto chegada:
-                    <select>
-                      <option value="grapefruit">Grapefruit</option>
-                      <option value="lime">Lime</option>
-                      <option value="coconut">Coconut</option>
-                      <option value="mango">Mango</option>
-                    </select>
-                  </label>
-
-                  <input type="submit" value="Submit" />
+                  <input type="submit" value="Submit" class="btn btn-submit"/>
                 </form>
               </div>
               <div class="grid-voos">
                 <div class="row">
                   <div class="cell">
-                    <span className="icon icon-land -purple"></span>
+                    <span className = "icon icon-land -blue" > </span>
                     <span className="arport">Viracopos</span>
                   </div>
                   <div class="cell">
-                    <span className="icon icon-arrived -blue"></span>
+                    <span className = "icon icon-arrived -pink" > </span>
                     <span className="arport">Miami</span>
                   </div>
                   <div class="cell">
-                    <span className="icon icon-date -pink"></span>
+                    <span className="icon icon-date -purple"></span>
                     <span className="arport">99/99/99</span>
                   </div>
                   <div class="cell">
