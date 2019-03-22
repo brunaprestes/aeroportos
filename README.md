@@ -1,16 +1,16 @@
 # Aeroportos
 
 ## O que preciso ter instalado?
-  <p>você precisará ter o node mais recente e estável intalado instalado</p>
-     https://nodejs.org/en/
+  <p>você precisará ter o node mais recente e estável intalado instalado
+     https://nodejs.org/en/</p>
   <p>precisará também ter o npx instalado, recomendamos instalar global</p>
-    *npm install -g npx*
+    <code>*npm install -g npx*</code>
     
   
 
 ## Clone o reposistório git: 
-  <code>*git clone https://github.com/BrunitaFernandes/aeroportos.git*</code>
-  <code>*cd aeroportos*</code>
+  <p><code>*git clone https://github.com/BrunitaFernandes/aeroportos.git*</code></p>
+  <p><code>*cd aeroportos*</code></p>
 
 ## começando a começar
 <p>Rode o comando <code>*npm install*</code></p>
