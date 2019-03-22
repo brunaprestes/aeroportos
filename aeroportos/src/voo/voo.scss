@@ -11,7 +11,7 @@
 
     form {
       padding-bottom: 1rem;
-      box-shadow: -3px 4px 1px -4px #999;
+      box-shadow: -1px 4px 1px -4px #999;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -19,14 +19,15 @@
 
     label {
       font-size: 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .icon {
       font-size: 1.1rem;
     }
 
-    input,
-    select {
+    input, select {
       height: 2rem;
       font-size: 0.7rem;
       padding: 0.1rem;
@@ -39,15 +40,15 @@
       &.-purple {
         color: #939dce;
       }
-
+      
       &.-blue {
         color: #79bec5;
       }
-
+      
       &.-pink {
         color: #ff879b;
       }
-
+      
       &.-green {
         color: #60c786;
       }
@@ -82,6 +83,58 @@
       background-color: #79bec5;
       color: #fff;
       text-align: center;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.grid-voos {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+
+  & > .row {
+    padding: 1rem;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: rgba(240, 255, 255, 0.09);
+    margin: 1rem 0;
+    box-shadow: 1px 1px 2px 0px #666;
+    width: 25rem;
+
+    & > .cell {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.3rem;
+      border-bottom: 1px dotted #999;
+      align-items: center;
+
+      .icon {
+        font-size: 1.3rem;
+        &.-purple {
+          color: #939dce;
+        }
+  
+        &.-blue {
+          color: #79bec5;
+        }
+  
+        &.-pink {
+          color: #ff879b;
+        }
+  
+        &.-green {
+          color: #60c786;
+        }
+      }
+
+
+      .arport {
+        font-size: 0.8rem;
+      }
     }
   }
 }
