@@ -6,7 +6,10 @@ class VooControler extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {aeroportos: [] };
+    this.state = {
+      aeroportos: [],
+      voos: [],
+    };
   }
   componentDidMount() {
     axios.get('https://api-voadora.dev.tegra.com.br/flight/companies')
@@ -17,6 +20,29 @@ class VooControler extends Component {
         });
         console.log(response.data);
       });
+
+       axios.post('https://api-voadora.dev.tegra.com.br/flight')
+         .then((response) => {
+           debugger;
+           this.setState({
+             voos: response.data,
+           });
+           console.log(response.data);
+         });
+
+    this.getFiltredList();
+  }
+
+
+  getFiltredList() {
+    axios.post('https://api-voadora.dev.tegra.com.br/flight')
+    .then((response) => {
+      debugger;
+      this.setState({
+        voos: response.data,
+      });
+      console.log(response.data);
+    });
   }
 
   shouldComponentUpdate() {
@@ -24,8 +50,7 @@ class VooControler extends Component {
   }
 
   render() {
-    return (
-    <Voo aeroportos={this.state.aeroportos}></Voo>
+    return ( <Voo aeroportos={this.state.aeroportos} > </Voo>
     );
   }
 }
