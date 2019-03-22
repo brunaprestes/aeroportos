@@ -4,11 +4,14 @@
   você precisará ter o node mais recente e estável intalado instalado
      https://nodejs.org/en/
   precisará também ter o npx instalado, recomendamos instalar global
-    npm install -g npx
+    *npm install -g npx*
     
   
 
 # Clone o reposistório git: 
-  git clone https://github.com/BrunitaFernandes/aeroportos.git
-  cd aeroportos
+  *git clone https://github.com/BrunitaFernandes/aeroportos.git*
+  *cd aeroportos*
 
+# começando a começar
+Rode o comando *npm install*
+rode *npm start*
