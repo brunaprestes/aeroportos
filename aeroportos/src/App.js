@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.scss';
 import Voo from './voo/voo';
+import VooControler from './voo/voo-controler';
 
 class App extends Component {
   render() {
     return (
-      < div className = "full-screen dont-scroll" >
+      < div className="full-screen dont-scroll" >
         <header>
           <img src={logo} className="logo"/>
         </header>
         <div className="content">
           <main>
-            <Voo></Voo>
+            <VooControler></VooControler>
           </main>
           <nav className="menu">
             <ul className="list-items">
