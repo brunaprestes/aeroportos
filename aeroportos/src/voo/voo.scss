@@ -4,6 +4,34 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
+  
+  .order {
+    display: flex;
+    margin-top: 0.5rem;
+
+    h1 {
+      margin: 0;
+    }
+
+    label {
+      margin: 0 3rem;
+      display: flex;
+      flex-wrap: nowrap;
+      font-size: 0.8rem;
+      align-items: center;
+     }
+
+     span {
+      width: 10rem;
+     }
+
+     input {
+      box-sizing: border-box;
+      padding: 0;
+      height: auto;
+      display: flex;
+     }
+  }
 
   .filters {
     display: flex;
@@ -113,6 +141,19 @@
       padding: 0.3rem;
       border-bottom: 1px dotted #999;
       align-items: center;
+      word-break: break-all;
+
+      .arport {
+        padding: 0 0.2rem;
+      }
+
+      .escalas {
+        font-size: 1rem;
+        
+        font-family: 'Baloo';
+        
+        color: #79bec5;
+      }
 
       .icon {
         font-size: 1.3rem;

@@ -5,6 +5,7 @@ import Voo from './voo';
 class VooControler extends Component {
   partida = '';
   destino = '';
+  data = '';
 
   constructor(props) {
     super(props);
@@ -13,10 +14,17 @@ class VooControler extends Component {
       voos: [],
       partida: '',
       destino: '',
+      data: '',
     };
     this.handleChangeGo = this.handleChangeGo.bind(this);
     this.handleChangeArrived = this.handleChangeArrived.bind(this);
+    this.handleChangeDate = this.handleChangeDate.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.getFiltredList = this.getFiltredList.bind(this);
+    this.formatObjectFligth  = this.formatObjectFligth.bind(this);
+    this.noDataFunction = this.noDataFunction.bind(this);
   }
+
 
   componentDidMount() {
     axios.get('https://api-voadora.dev.tegra.com.br/flight/companies')
@@ -25,29 +33,47 @@ class VooControler extends Component {
         this.setState({
           aeroportos: response.data,
         });
-        console.log(response.data);
       });
     }
 
 
-  fligthFiltred() {
-    axios.post('https://api-voadora.dev.tegra.com.br/flight')
-      .then((response) => {
-        this.setState({
-          voos: response.data[0],
-        });
-        console.log(response.data);
-      });
+  formatObjectFligth (flights) {
+    let aeroportosList = this.state.aeroportos;
+    debugger;
+    let voo = {
+      partida: '',
+      destino: '',
+      dataSaida: '',
+      preco: 0,
+      cidadesEscalas: [],
+      tempoTotal: '',
+    }
+    const list = [];
+    flights.forEach(flight => {
+      debugger;
+      voo.dataSaida = flight.date;
+      voo.partida = (aeroportosList.filter((aeroporto) => aeroporto.aeroporto === flight.origem))[0].nome;
+      voo.destino = (aeroportosList.filter((aeroporto) => aeroporto.aeroporto === flight.destino))[0].nome;
+
+      flight.voos.forEach(vooItem => {
+        voo.cidadesEscalas.push((aeroportosList.filter((aeroporto) => aeroporto.aeroporto === vooItem.origem))[0].cidade);
+        voo.cidadesEscalas.push((aeroportosList.filter((aeroporto) => aeroporto.aeroporto === vooItem.destino))[0].cidade);
+        voo.preco = voo.preco + vooItem.valor;
+      } );
+
+      list.push(voo);
+    });
+
+
+    this.setState({
+      voos: list,
+    });
   }
 
-  getFiltredList() {
-    axios.post('https://api-voadora.dev.tegra.com.br/flight')
+  getFiltredList(param) {
+    axios.post('https://api-voadora.dev.tegra.com.br/flight', param)
     .then((response) => {
-      
-      this.setState({
-        voos: response.data,
-      });
-      console.log(response.data);
+      this.formatObjectFligth(response.data);
     });
   }
 
@@ -62,12 +88,47 @@ class VooControler extends Component {
 
   handleChangeArrived(event) {
     this.destino = event.target.value;
-    console.log(this.destino);
     this.setState({destino: this.destino});
   }
 
+  handleChangeDate(event) {
+    this.data = event.target.value;
+    this.setState({
+      data: this.data,
+    });
+  }
+
+  noDataFunction(){
+    debugger;
+    if(this.state.voos.length < 1) {
+      return <h1>Não encontramos itens, por gentileza faça uma nova busca</h1>
+    }
+    return;
+  }
+
+  onClick (event) {
+    event.preventDefault();
+    let param = {
+      "from": this.state.partida,
+      "to": this.state.destino,
+      "date": this.state.data,
+    }
+    this.getFiltredList(param);
+  }
+
   render() {
-    return ( <Voo aeroportos={this.state.aeroportos} handleChangeGo={this.handleChangeGo} handleChangeArrived={this.handleChangeArrived}  partida={this.partida} destino={this.destino}> </Voo>
+    return ( 
+      <Voo
+        aeroportos={this.state.aeroportos}
+        handleChangeGo={this.handleChangeGo}
+        handleChangeArrived={this.handleChangeArrived}
+        partida={this.partida} destino={this.destino}
+        data={this.data}
+        handleChangeDate={this.handleChangeDate}
+        onClick={this.onClick}
+        voos={this.state.voos}
+        noDataFunction={ this.noDataFunction }
+      > </Voo>
     );
   }
 }

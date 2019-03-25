@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.scss';
-import Voo from './voo/voo';
 import VooControler from './voo/voo-controler';
 
 class App extends Component {
@@ -9,7 +8,7 @@ class App extends Component {
     return (
       < div className="full-screen dont-scroll" >
         <header>
-          <img src={logo} className="logo"/>
+          <img src={logo} className="logo" alt="Logo marca da Sweet Flight"/>
         </header>
         <div className="content">
           <main>

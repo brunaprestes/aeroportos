@@ -5,9 +5,8 @@ import './voo.scss';
 
 const Voo = (props) => {
   console.log(props); 
-  let filter;
   
-  
+
   return(
   <div className="voo-component">
     <h1>Voôs disponíveis</h1>
@@ -44,34 +43,51 @@ const Voo = (props) => {
         <label>
           Data de embarque:
           <div className="input-group" >
-            <input className="form-control" type="date" />
+            <input value={props.data} onChange={props.handleChangeDate} className="form-control" type="date" />
             <div className="input-group-append">
               <span className="input-group-text -pink"><i className="icon icon-date"></i></span>
             </div>
           </div>
         </label>
-        <button className="btn btn-submit">Enviar</button>
+        <button onClick={ props.onClick } className="btn btn-submit">Enviar</button>
       </form>
     </div>
+    <div className="order">
+      <h1>Ordenar por:</h1>
+      <label><span>Menor tempo:</span> <input type="checkbox" className="form-control" value=""/></label>
+      <label><span>Menor valor:</span> <input type="checkbox" className="form-control" value=""/></label>
+    </div>
     <div className="grid-voos">
+    {
+      props.voos.map((voo)=> (
       <div className="row">
         <div className="cell">
           <span className = "icon icon-land -blue" > </span>
-          <span className="arport">Viracopos</span>
+          <span className="arport">{voo.partida}</span>
         </div>
         <div className="cell">
           <span className = "icon icon-arrived -pink" > </span>
-          <span className="arport">Miami</span>
+          <span className="arport">{voo.destino}</span>
         </div>
         <div className="cell">
           <span className="icon icon-date -purple"></span>
-          <span className="arport">99/99/99</span>
+          <span className="arport">{voo.dataSaida}</span>
         </div>
         <div className="cell">
           <span className = "icon icon-money -green" > </span>
-          <span className="arport">R$400,00</span>
+          <span className="arport">{voo.preco}</span>
+        </div>
+        <div className="cell">
+          <span className= "escalas" > Escalas em: </span>
+          <span className="arport">{voo.cidadesEscalas.toString()}</span>
+        </div>
+        <div className="cell">
+          <span className= "escalas" > Tempo total:</span>
+          <span className="arport">8h00</span>
         </div>
       </div>
+      ))
+    }
     </div>
   </div>
   );
