@@ -7,6 +7,7 @@ class VooControler extends Component {
   destino = '';
   data = '';
   sortPreco = false;
+  sortTempo = false;
 
   constructor(props) {
     super(props);
@@ -17,6 +18,7 @@ class VooControler extends Component {
       destino: '',
       data: '',
       sortPreco: false,
+      sortTempo: false,
     };
     this.handleChangeGo = this.handleChangeGo.bind(this);
     this.handleChangeArrived = this.handleChangeArrived.bind(this);
@@ -26,6 +28,8 @@ class VooControler extends Component {
     this.formatObjectFligth  = this.formatObjectFligth.bind(this);
     this.noDataFunction = this.noDataFunction.bind(this);
     this.handleSortPreco = this.handleSortPreco.bind(this);
+    this.handleSortTempo = this.handleSortTempo.bind(this);
+    this.getVoos = this.getVoos.bind(this);
   }
 
 
@@ -48,7 +52,7 @@ class VooControler extends Component {
       dataSaida: '',
       preco: 0,
       cidadesEscalas: [],
-      tempoTotal: '',
+      tempoTotal: 0,
     }
     let list = [];
     flights.forEach(flight => {
@@ -59,6 +63,7 @@ class VooControler extends Component {
 
       flight.voos.forEach(vooItem => {
         voo.cidadesEscalas.push((aeroportosList.filter((aeroporto) => aeroporto.aeroporto === vooItem.origem))[0].cidade);
+        voo.tempoTotal += this.getDiffHour(vooItem);
         voo.cidadesEscalas.push((aeroportosList.filter((aeroporto) => aeroporto.aeroporto === vooItem.destino))[0].cidade);
         voo.preco = voo.preco + vooItem.valor;
       } );
@@ -70,7 +75,7 @@ class VooControler extends Component {
         dataSaida: '',
         preco: 0,
         cidadesEscalas: [],
-        tempoTotal: '',
+        tempoTotal: 0,
       }
     });
 
@@ -80,6 +85,14 @@ class VooControler extends Component {
     });
     
     list = [];  
+  }
+
+  getDiffHour(vooItem) {
+    const saida = vooItem.saida.split(':');
+    const chegada = vooItem.chegada.split(':');
+    const saidaMin = (parseInt(saida[0])*60) + parseInt(saida[1]);
+    const chegadaMin = (parseInt(chegada[0]) * 60) + parseInt(chegada[1]);
+    return (chegadaMin - saidaMin) / 60;
   }
 
   getFiltredList(param) {
@@ -117,6 +130,13 @@ class VooControler extends Component {
     });
   }
 
+  handleSortTempo = (event) => {
+    debugger;
+    this.setState({
+      sortTempo: event.target.checked,
+    });
+  }
+
   noDataFunction(){
     if(this.state.voos.length < 1) {
       return <h1>Não encontramos itens, por gentileza faça uma nova busca</h1>
@@ -149,11 +169,27 @@ class VooControler extends Component {
         data={this.data}
         handleChangeDate={this.handleChangeDate}
         onClick={this.onClick}
-        voos={ this.state.sortPreco ? this.state.voos.sort((a, b) => a.preco - b.preco) :  this.state.voos}
+        voos={this.getVoos()}
         noDataFunction={this.noDataFunction}
         handleSortPreco={this.handleSortPreco}
+        handleSortTempo={this.handleSortTempo}
       > </Voo>
     );
+  }
+
+  getVoos() {
+
+    if (this.state.sortPreco && this.state.sortTempo) {
+      debugger;
+      return this.state.voos.sort((a, b) => a.preco - b.preco).sort((a, b) => a.tempoTotal - b.tempoTotal);
+    }
+
+    if (this.state.sortTempo) {
+      debugger;
+      return this.state.voos.sort((a, b) => a.tempoTotal - b.tempoTotal);
+    }
+    debugger;
+    return this.state.sortPreco ? this.state.voos.sort((a, b) => a.preco - b.preco) : this.state.voos;
   }
 }
 

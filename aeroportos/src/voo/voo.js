@@ -81,7 +81,7 @@ const Voo = (props) => {
         </div>
         <div className="cell">
           <span className= "escalas" > Tempo total:</span>
-          <span className="arport">8h00</span>
+          <span className="arport">{voo.tempoTotal.toFixed(2)}hrs</span>
         </div>
       </div>
       ))
