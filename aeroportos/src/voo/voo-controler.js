@@ -6,6 +6,7 @@ class VooControler extends Component {
   partida = '';
   destino = '';
   data = '';
+  sortPreco = false;
 
   constructor(props) {
     super(props);
@@ -16,7 +17,6 @@ class VooControler extends Component {
       destino: '',
       data: '',
       sortPreco: false,
-      sortTempo: false,
     };
     this.handleChangeGo = this.handleChangeGo.bind(this);
     this.handleChangeArrived = this.handleChangeArrived.bind(this);
@@ -25,8 +25,7 @@ class VooControler extends Component {
     this.getFiltredList = this.getFiltredList.bind(this);
     this.formatObjectFligth  = this.formatObjectFligth.bind(this);
     this.noDataFunction = this.noDataFunction.bind(this);
-    this.sortTempo = this.sortTempo.bind(this);
-    this.sortValue = this.sortValue.bind(this);
+    this.handleSortPreco = this.handleSortPreco.bind(this);
   }
 
 
@@ -39,6 +38,7 @@ class VooControler extends Component {
         });
       });
     }
+
 
   formatObjectFligth (flights) {
     let aeroportosList = this.state.aeroportos;
@@ -78,11 +78,7 @@ class VooControler extends Component {
     this.setState({
       voos: list,
     });
-
-    if (this.state.sortPreco) {
-      this.sortValue();
-    }
-  
+    
     list = [];  
   }
 
@@ -115,6 +111,12 @@ class VooControler extends Component {
     });
   }
 
+  handleSortPreco = (event) => {
+    this.setState({
+      sortPreco: event.target.checked,
+    });
+  }
+
   noDataFunction(){
     if(this.state.voos.length < 1) {
       return <h1>Não encontramos itens, por gentileza faça uma nova busca</h1>
@@ -137,40 +139,19 @@ class VooControler extends Component {
     this.getFiltredList(param);
   }
 
-  sortTempo() {
-    this.state.voos.sort((a, b) =>  a.preco - b.preco );
-  }
-
-  sortValue(event) {
-    debugger;
-    if(event) {
-      this.setState({
-        sortPreco: this.event.target.value
-      });
-    }
-    if(this.state.sortPreco) {
-      this.state.voos.sort((a, b) => a.tempoTotal - b.tempoTotal);
-    }
-  }
-
-
   render() {
     return ( 
       <Voo
         aeroportos={this.state.aeroportos}
         handleChangeGo={this.handleChangeGo}
         handleChangeArrived={this.handleChangeArrived}
-        partida={this.partida}
-        destino={this.destino}
+        partida={this.partida} destino={this.destino}
         data={this.data}
         handleChangeDate={this.handleChangeDate}
         onClick={this.onClick}
-        voos={this.state.voos}
+        voos={ this.state.sortPreco ? this.state.voos.sort((a, b) => a.preco - b.preco) :  this.state.voos}
         noDataFunction={this.noDataFunction}
-        sortTempo={this.sortTempo}
-        sortValue={this.sortValue}
-        isValueSortable={this.state.sortPreco}
-        isTempoSortable={this.state.sortTempo}
+        handleSortPreco={this.handleSortPreco}
       > </Voo>
     );
   }
