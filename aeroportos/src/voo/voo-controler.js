@@ -39,7 +39,6 @@ class VooControler extends Component {
 
   formatObjectFligth (flights) {
     let aeroportosList = this.state.aeroportos;
-    debugger;
     let voo = {
       partida: '',
       destino: '',
@@ -48,9 +47,9 @@ class VooControler extends Component {
       cidadesEscalas: [],
       tempoTotal: '',
     }
-    const list = [];
+    let list = [];
     flights.forEach(flight => {
-      debugger;
+
       voo.dataSaida = flight.date;
       voo.partida = (aeroportosList.filter((aeroporto) => aeroporto.aeroporto === flight.origem))[0].nome;
       voo.destino = (aeroportosList.filter((aeroporto) => aeroporto.aeroporto === flight.destino))[0].nome;
@@ -62,17 +61,28 @@ class VooControler extends Component {
       } );
 
       list.push(voo);
+      voo = {
+        partida: '',
+        destino: '',
+        dataSaida: '',
+        preco: 0,
+        cidadesEscalas: [],
+        tempoTotal: '',
+      }
     });
 
 
     this.setState({
       voos: list,
     });
+    
+    list = [];  
   }
 
   getFiltredList(param) {
     axios.post('https://api-voadora.dev.tegra.com.br/flight', param)
     .then((response) => {
+
       this.formatObjectFligth(response.data);
     });
   }
@@ -99,7 +109,6 @@ class VooControler extends Component {
   }
 
   noDataFunction(){
-    debugger;
     if(this.state.voos.length < 1) {
       return <h1>Não encontramos itens, por gentileza faça uma nova busca</h1>
     }
@@ -113,6 +122,11 @@ class VooControler extends Component {
       "to": this.state.destino,
       "date": this.state.data,
     }
+
+    this.setState({
+      voos: [],
+    });
+
     this.getFiltredList(param);
   }
 

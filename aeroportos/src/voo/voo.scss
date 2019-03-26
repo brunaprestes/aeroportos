@@ -14,7 +14,7 @@
     }
 
     label {
-      margin: 0 3rem;
+      margin: 0 0.51rem;
       display: flex;
       flex-wrap: nowrap;
       font-size: 0.8rem;
@@ -22,7 +22,7 @@
      }
 
      span {
-      width: 10rem;
+      width: auto;
      }
 
      input {
@@ -30,6 +30,7 @@
       padding: 0;
       height: auto;
       display: flex;
+      width: auto;
      }
   }
 
@@ -141,10 +142,13 @@
       padding: 0.3rem;
       border-bottom: 1px dotted #999;
       align-items: center;
-      word-break: break-all;
 
-      .arport {
+      .arport {        
+        font-size: 0.8rem;
+        text-align: right;
+        line-height: 1rem;
         padding: 0 0.2rem;
+        word-break: break-word;
       }
 
       .escalas {

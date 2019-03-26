@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import './voo.scss';
 
 const Voo = (props) => {
-  console.log(props); 
-  
+
+  console.log(props.voos);
 
   return(
   <div className="voo-component">
@@ -75,11 +75,11 @@ const Voo = (props) => {
         </div>
         <div className="cell">
           <span className = "icon icon-money -green" > </span>
-          <span className="arport">{voo.preco}</span>
+          <span className="arport">{voo.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
         </div>
         <div className="cell">
           <span className= "escalas" > Escalas em: </span>
-          <span className="arport">{voo.cidadesEscalas.toString()}</span>
+          <span className="arport">{voo.cidadesEscalas.toString().replace(/,/g, ', ')}</span>
         </div>
         <div className="cell">
           <span className= "escalas" > Tempo total:</span>
