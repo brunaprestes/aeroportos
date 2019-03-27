@@ -131,7 +131,7 @@ class VooControler extends Component {
   }
 
   handleSortTempo = (event) => {
-    debugger;
+    
     this.setState({
       sortTempo: event.target.checked,
     });
@@ -180,15 +180,15 @@ class VooControler extends Component {
   getVoos() {
 
     if (this.state.sortPreco && this.state.sortTempo) {
-      debugger;
+      
       return this.state.voos.sort((a, b) => a.preco - b.preco).sort((a, b) => a.tempoTotal - b.tempoTotal);
     }
 
     if (this.state.sortTempo) {
-      debugger;
+      
       return this.state.voos.sort((a, b) => a.tempoTotal - b.tempoTotal);
     }
-    debugger;
+    
     return this.state.sortPreco ? this.state.voos.sort((a, b) => a.preco - b.preco) : this.state.voos;
   }
 }
